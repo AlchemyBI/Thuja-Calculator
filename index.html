@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hedge Calculator</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="leaf-icon">🌿</span> Hedge Calculator</h1>
+            <button id="reset-btn" class="reset-button">↺ Reset</button>
+        </header>
+
+        <div class="calculator-form">
+            <div class="input-group" id="length-section">
+                <label>Hedge Length (Meters)</label>
+                <div class="length-input-container">
+                    <input type="number" id="hedge-length" min="0" step="0.1" placeholder="Enter length in meters">
+                    <button id="confirm-length" class="confirm-btn">
+                        <span class="confirm-text">OK</span>
+                        <span class="confirm-icon">→</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="input-group hidden fade-ready" id="species-section">
+                <label>Select Thuja Species</label>
+                <div class="species-options">
+                    <label class="species-card">
+                        <input type="radio" name="species" value="Boothii">
+                        <div class="card-content">
+                            <span class="species-name">Thuja Boothi</span>
+                            <span class="species-description">Compact, slow-growing variety perfect for smaller spaces</span>
+                        </div>
+                    </label>
+
+                    <label class="species-card">
+                        <input type="radio" name="species" value="Smaragd">
+                        <div class="card-content">
+                            <span class="species-name">Thuja Smaragd</span>
+                            <span class="species-description">Fast-growing emerald variety ideal for privacy screens</span>
+                        </div>
+                    </label>
+
+                    <label class="species-card">
+                        <input type="radio" name="species" value="Brabant">
+                        <div class="card-content">
+                            <span class="species-name">Thuja Brabant</span>
+                            <span class="species-description">Dense, fast-growing variety with excellent winter hardiness</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="input-group hidden fade-ready" id="height-section">
+                <label>Select Height</label>
+                <div id="height-buttons" class="height-buttons">
+                    <!-- Height buttons will be dynamically added here -->
+                </div>
+            </div>
+
+            <div class="input-group hidden fade-ready" id="installation-section">
+                <label>Installation Preference</label>
+                <div class="installation-options">
+                    <div class="installation-card">
+                        <input type="radio" id="installation-yes" name="installation" value="yes">
+                        <label class="card-content" for="installation-yes">
+                            <span class="option-title">Professional Installation</span>
+                            <span class="option-description">Our experts will plant your hedge with proper spacing and care</span>
+                        </label>
+                    </div>
+                    <div class="installation-card">
+                        <input type="radio" id="installation-no" name="installation" value="no">
+                        <label class="card-content" for="installation-no">
+                            <span class="option-title">Self Installation</span>
+                            <span class="option-description">Install the hedge yourself with our detailed planting guide</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group hidden fade-ready" id="delivery-section">
+                <label>Delivery Preference</label>
+                <div class="delivery-options">
+                    <div class="delivery-card">
+                        <input type="radio" id="delivery-yes" name="delivery" value="yes">
+                        <label class="card-content" for="delivery-yes">
+                            <span class="option-title">Delivery to Address</span>
+                            <span class="option-description">We'll deliver the trees to your specified location</span>
+                        </label>
+                    </div>
+                    <div class="delivery-card">
+                        <input type="radio" id="delivery-no" name="delivery" value="no">
+                        <label class="card-content" for="delivery-no">
+                            <span class="option-title">Self Pickup</span>
+                            <span class="option-description">Pick up your trees from our nursery location</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="calculate-button" class="calculate-button-container hidden fade-ready">
+                <button class="calculate-btn">
+                    <span class="calculate-icon">📊</span>
+                    Calculate an Estimate
+                </button>
+            </div>
+
+            <div id="loading-section" class="loading-section hidden">
+                <div class="loading-content">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="loading-text">Calculating your estimate...</div>
+                    <div class="loading-details">Analyzing spacing requirements and calculating costs</div>
+                </div>
+            </div>
+
+            <div id="result" class="result hidden">
+                <h2>Calculation Result</h2>
+                <div class="result-content">
+                    <p>Your hedge length: <span class="unit-value"><span id="result-hedge-length">0</span>m</span></p>
+                    <p>Your selected tree height: <span class="unit-value"><span id="result-hedge-height">0</span></span></p>
+                    <p>Number of trees needed: <span id="trees-needed">0</span></p>
+                    <p>Trees cost: <span id="trees-cost">€0 - €0</span></p>
+                    <p id="installation-cost" class="hidden">Installation cost: <span id="installation-fee">€0</span></p>
+                    <p id="delivery-cost" class="hidden">Delivery cost: <span id="delivery-fee">€0</span></p>
+                    <p class="total-cost">Total estimated cost: <span id="total-estimate">€0 - €0</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
