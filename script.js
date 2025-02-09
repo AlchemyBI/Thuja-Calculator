@@ -157,6 +157,32 @@ document.addEventListener('DOMContentLoaded', () => {
         // Use setTimeout to ensure the fade-in animation triggers after the display change
         setTimeout(() => {
             section.classList.add('fade-in');
+            // Smooth scroll to the new section with custom scroll behavior
+            const offset = 20; // Add some padding above the section
+            const sectionTop = section.getBoundingClientRect().top + window.pageYOffset - offset;
+            
+            // Custom smooth scroll function for more control
+            const startPosition = window.pageYOffset;
+            const distance = sectionTop - startPosition;
+            const duration = 1000; // Increased duration to 1 second
+            let start = null;
+
+            function animation(currentTime) {
+                if (start === null) start = currentTime;
+                const timeElapsed = currentTime - start;
+                const progress = Math.min(timeElapsed / duration, 1);
+                
+                // Easing function for smoother animation
+                const ease = t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                
+                window.scrollTo(0, startPosition + distance * ease(progress));
+                
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                }
+            }
+            
+            requestAnimationFrame(animation);
         }, 50);
     }
 
@@ -201,6 +227,32 @@ document.addEventListener('DOMContentLoaded', () => {
             resultDiv.classList.remove('hidden');
             setTimeout(() => {
                 resultDiv.classList.add('visible');
+                // Smooth scroll to results with custom scroll behavior
+                const offset = 20;
+                const resultTop = resultDiv.getBoundingClientRect().top + window.pageYOffset - offset;
+                
+                // Custom smooth scroll function for results
+                const startPosition = window.pageYOffset;
+                const distance = resultTop - startPosition;
+                const duration = 1000; // 1 second duration
+                let start = null;
+
+                function animation(currentTime) {
+                    if (start === null) start = currentTime;
+                    const timeElapsed = currentTime - start;
+                    const progress = Math.min(timeElapsed / duration, 1);
+                    
+                    // Easing function for smoother animation
+                    const ease = t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                    
+                    window.scrollTo(0, startPosition + distance * ease(progress));
+                    
+                    if (timeElapsed < duration) {
+                        requestAnimationFrame(animation);
+                    }
+                }
+                
+                requestAnimationFrame(animation);
             }, 50);
             calculateResults();
         }, 1000);
